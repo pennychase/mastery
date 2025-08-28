@@ -1,6 +1,6 @@
 # Mastery
 
-**TODO: Add description**
+Repo for the Mastery game, the extended example in James Gray and Bruce Tate's _Designing Elixir Systems with OTP_
 
 ## Installation
 
