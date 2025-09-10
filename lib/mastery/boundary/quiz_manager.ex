@@ -4,12 +4,6 @@ defmodule Mastery.Boundary.QuizManager do
 
   # Client API
 
-  def init(quizzes) when is_map(quizzes) do
-    {:ok, quizzes}
-  end
-
-  def init(_quizzes), do: {:error, "quizzes must be a map"}
-
   def build_quiz(manager \\__MODULE__, quiz_fields) do
     GenServer.call(manager, {:build_quiz, quiz_fields})
   end
@@ -21,8 +15,15 @@ defmodule Mastery.Boundary.QuizManager do
   def lookup_quiz_by_title(manager \\__MODULE__, quiz_title) do
     GenServer.call(manager, {:lookup_quiz_by_title, quiz_title})
   end
+  
 
   # Callbacks
+
+  def init(quizzes) when is_map(quizzes) do
+    {:ok, quizzes}
+  end
+
+  def init(_quizzes), do: {:error, "quizzes must be a map"}
 
   def handle_call({:build_quiz, quiz_fields}, _from, quizzes) do
     quiz = Quiz.new(quiz_fields)
