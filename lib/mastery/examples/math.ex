@@ -23,7 +23,8 @@ defmodule Mastery.Examples.Math do
   end
 
   def quiz_fields() do
-    [mastery: 2, title: :simple_addition]
+    %{mastery: 2, title: :simple_addition}
+    # [mastery: 2, title: :simple_addition]
   end
 
   def quiz() do
@@ -31,5 +32,5 @@ defmodule Mastery.Examples.Math do
     |> Quiz.new()
     |> Quiz.add_template(template_fields())
   end
-  
+
 end
