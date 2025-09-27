@@ -15,9 +15,7 @@ defmodule Mastery.Application do
       {Registry, [name: Mastery.Registry.QuizSession, keys: :unique]},
       {DynamicSupervisor, [name: Mastery.Supervisor.QuizSession, strategy: :one_for_one]}
     ]
-
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
+    
     opts = [strategy: :one_for_one, name: Mastery.Supervisor]
     Supervisor.start_link(children, opts)
   end
