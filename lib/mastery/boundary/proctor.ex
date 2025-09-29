@@ -34,7 +34,6 @@ defmodule Mastery.Boundary.Proctor do
 			|> Enum.sort(fn a, b ->
 				date_time_less_than_or_equal?(a.start_at, b.start_at)
 			end)
-		Logger.info("Scheduling quizzes: #{ordered_quizzes}")
 		build_reply_with_timeout({:reply, :ok}, ordered_quizzes, now)
 	end
 
@@ -72,8 +71,8 @@ defmodule Mastery.Boundary.Proctor do
 	defp start_quiz(quiz, now) do
 		Logger.info "Starting quiz #{quiz.fields.title}..."
 		QuizManager.build_quiz(quiz.fields)
-		Enum.each(quiz.templates, &QuizManager.add_template(quiz, &1))
-		timeout = DateTime.diff(quiz.end_at, now, :milliseconds)
+		Enum.each(quiz.templates, &QuizManager.add_template(quiz.fields.title, &1))
+		timeout = DateTime.diff(quiz.end_at, now, :millisecond)
 		Process.send_after(self(), {:end_quiz, quiz.fields.title}, timeout)
 	end
 
