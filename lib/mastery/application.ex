@@ -9,10 +9,11 @@ defmodule Mastery.Application do
   def start(_type, _args) do
 
     IO.puts "Starting Mastery"
-    
+
     children = [
       {Mastery.Boundary.QuizManager, [name: Mastery.Boundary.QuizManager]},
       {Registry, [name: Mastery.Registry.QuizSession, keys: :unique]},
+      {Mastery.Boundary.Proctor, [name: Mastery.Boundary.Procotor]},
       {DynamicSupervisor, [name: Mastery.Supervisor.QuizSession, strategy: :one_for_one]}
     ]
     
