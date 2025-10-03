@@ -3,6 +3,8 @@ defmodule Mastery do
   alias Mastery.Boundary.{TemplateValidator, QuizValidator}
   alias Mastery.Core.Quiz
 
+  @persistence_fn Application.get_env(:mastery, :persistence_fn)
+
   def build_quiz(fields) do
     with :ok <- QuizValidator.errors(fields),
          :ok <- QuizManager.build_quiz(fields),
@@ -36,8 +38,8 @@ defmodule Mastery do
     QuizSession.select_question(session)
   end
 
-  def answer_question(session, answer) do
-    QuizSession.answer_question(session, answer)
+  def answer_question(session, answer, persistence_fn \\ @persistence_fn) do
+    QuizSession.answer_question(session, answer, persistence_fn)
   end
 
 end
