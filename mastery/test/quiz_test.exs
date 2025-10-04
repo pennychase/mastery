@@ -21,7 +21,7 @@ defmodule QuizTest do
     end
   end
 
-  describe "a quiz that always adds one and teo" do
+  describe "a quiz that always adds one and two" do
     setup [:quiz_always_adds_one_and_two]
 
     test "awrong answer resets mastery", %{quiz: quiz} do
