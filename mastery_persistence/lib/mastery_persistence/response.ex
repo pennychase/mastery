@@ -3,7 +3,7 @@ defmodule MasteryPersistence.Response do
   import Ecto.Changeset
 
   @mastery_fields ~w[quiz_title template_name to email answer correct]a
-  @timestamps ~w[inserted_at updated_at]
+  @timestamps ~w[inserted_at updated_at]a
 
   schema "responses" do
     field :quiz_title, :string
