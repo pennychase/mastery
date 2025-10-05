@@ -4,7 +4,7 @@ defmodule MasteryTest do
   alias MasteryPersistence.Repo
   alias Mastery.Examples.Math
   alias Mastery.Boundary.QuizSession
-  alias Mastery.Persistence.Response
+  alias MasteryPersistence.Response
 
   setup do
     enable_persistence()
@@ -40,7 +40,7 @@ defmodule MasteryTest do
   end
 
   defp response_count() do
-    Repo.aggregate(MasteryPersistence.Response, :count, :id)
+    Repo.aggregate(Response, :count, :id)
   end
 
   # Helpers to build and start quiz
